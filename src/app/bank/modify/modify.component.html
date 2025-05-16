@@ -1,0 +1,27 @@
+<c-card>
+  <c-card-body>
+    <form [formGroup]="modifyForm" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label>Client ID</label>
+        <input class="form-control" formControlName="clientId" />
+      </div>
+      <div class="mb-3">
+        <label>Nouveau nom (optionnel)</label>
+        <input class="form-control" formControlName="name" />
+      </div>
+      <div class="mb-3">
+        <label>Nouvel email (optionnel)</label>
+        <input class="form-control" formControlName="email" />
+      </div>
+      <div class="mb-3">
+        <label>Nouveau téléphone (optionnel)</label>
+        <input class="form-control" formControlName="phone" />
+      </div>
+      <div class="mb-3">
+        <label>Mot de passe superviseur</label>
+        <input class="form-control" type="password" formControlName="supervisorPassword" />
+      </div>
+      <button class="btn btn-warning" type="submit">Modifier</button>
+    </form>
+  </c-card-body>
+</c-card>

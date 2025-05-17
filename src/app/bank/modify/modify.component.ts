@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonModule, CardModule, FormModule } from '@coreui/angular';
-
-// même imports que EnrollComponent...
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CardModule, ButtonModule, FormModule } from '@coreui/angular';
+import { EnrollmentService } from '../../services/enrollment.service';
 
 @Component({
   selector: 'app-modify',
@@ -15,27 +14,34 @@ import { ButtonModule, CardModule, FormModule } from '@coreui/angular';
     CardModule,
     ButtonModule,
     FormModule,
-    
   ],
   templateUrl: './modify.component.html'
 })
 export class ModifyComponent {
   modifyForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private enrollmentService: EnrollmentService
+  ) {
     this.modifyForm = this.fb.group({
-      clientId: ['', Validators.required],
-      name: [''],
-      email: [''],
-      phone: [''],
+      clientId: [null, Validators.required],
+      newFirstName: [''],
+      newLastName: [''],
+      newEmail: ['', Validators.email],
+      newTel: [''],
       supervisorPassword: ['', Validators.required],
     });
   }
 
-  submit() {
+  submit(): void {
     if (this.modifyForm.valid) {
-      console.log(this.modifyForm.value);
+      this.enrollmentService.updateClient(this.modifyForm.value).subscribe({
+        next: () => alert('Client mis à jour avec succès'),
+        error: err => alert('Erreur de mise à jour : ' + err.message),
+      });
+    } else {
+      alert('Formulaire invalide. Vérifiez les champs obligatoires.');
     }
   }
 }
-

@@ -1,10 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { CardModule, ButtonModule, FormModule } from '@coreui/angular';
-
-
-// mêmes imports...
+import { EnrollmentService } from '../../services/enrollment.service';
 
 @Component({
   selector: 'app-delete',
@@ -15,22 +13,34 @@ import { CardModule, ButtonModule, FormModule } from '@coreui/angular';
     FormsModule,
     CardModule,
     ButtonModule,
-    FormModule,
+    FormModule
   ],
   templateUrl: './delete.component.html'
 })
 export class DeleteComponent {
   deleteForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private enrollmentService: EnrollmentService
+  ) {
     this.deleteForm = this.fb.group({
-      clientId: ['', Validators.required],
+      clientId: ['', [Validators.required, Validators.min(1)]],
     });
   }
 
-  submit() {
+  submit(): void {
     if (this.deleteForm.valid) {
-      console.log(this.deleteForm.value);
+      const clientId = this.deleteForm.value.clientId;
+
+      if (confirm(`Êtes-vous sûr de vouloir supprimer le client ID ${clientId} ?`)) {
+        this.enrollmentService.deleteClient(clientId).subscribe({
+          next: () => alert('Client supprimé avec succès'),
+          error: err => alert('Erreur lors de la suppression : ' + err.message),
+        });
+      }
+    } else {
+      alert('Veuillez entrer un ID client valide.');
     }
   }
 }

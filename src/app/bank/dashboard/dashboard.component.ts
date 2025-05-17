@@ -1,29 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CardModule } from '@coreui/angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
-import { CommonModule } from '@angular/common';
+import { DashboardService } from '../../services/dashborad.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    CommonModule,
-    CardModule,
-    ChartjsModule
-  ],
+  imports: [CommonModule, CardModule, ChartjsModule],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent {
-  totalClients = 120; // à récupérer depuis API
-  totalAccounts = 95; // à récupérer depuis API
+export class DashboardComponent implements OnInit {
+  totalClients = 0;
+  totalAccounts = 0;
 
   chartData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'Comptes créés',
         backgroundColor: '#4dbd74',
-        data: [5, 10, 8, 15, 12],
+        data: Array(12).fill(0),
       },
     ],
   };
@@ -31,5 +28,35 @@ export class DashboardComponent {
   chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
   };
+
+  constructor(private dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.loadDashboardData();
+  }
+
+  private loadDashboardData(): void {
+    this.dashboardService.getTotalClients().subscribe({
+      next: (count) => (this.totalClients = count),
+      error: (err) => console.error('Erreur clients :', err),
+    });
+
+    this.dashboardService.getTotalAccounts().subscribe({
+      next: (count) => (this.totalAccounts = count),
+      error: (err) => console.error('Erreur comptes :', err),
+    });
+
+    this.dashboardService.getAccountsPerMonth().subscribe({
+      next: (data) => {
+        this.chartData.datasets[0].data = [...data, ...Array(12 - data.length).fill(0)];
+      },
+      error: (err) => console.error('Erreur graphique :', err),
+    });
+  }
 }

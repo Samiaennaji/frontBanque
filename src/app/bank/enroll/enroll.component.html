@@ -2,23 +2,35 @@
   <c-card-body>
     <form [formGroup]="enrollForm" (ngSubmit)="submit()">
       <div class="mb-3">
-        <label>Nom complet</label>
-        <input class="form-control" formControlName="name" />
+        <label>Prénom</label>
+        <input class="form-control" formControlName="firstName" />
+      </div>
+      <div class="mb-3">
+        <label>Nom</label>
+        <input class="form-control" formControlName="lastName" />
       </div>
       <div class="mb-3">
         <label>Email</label>
-        <input class="form-control" formControlName="email" />
+        <input class="form-control" formControlName="email" type="email" />
       </div>
       <div class="mb-3">
         <label>Téléphone</label>
-        <input class="form-control" formControlName="phone" />
+        <input class="form-control" formControlName="tel" />
+      </div>
+      <div class="mb-3">
+        <label>Date de naissance</label>
+        <input class="form-control" formControlName="birthDate" type="date" />
       </div>
       <div class="mb-3">
         <label>Type de compte</label>
         <select class="form-control" formControlName="accountType">
-          <option value="courant">Courant</option>
-          <option value="epargne">Épargne</option>
+          <option value="COURANT">Courant</option>
+          <option value="EPARGNE">Épargne</option>
         </select>
+      </div>
+      <div class="mb-3">
+        <label>Solde initial</label>
+        <input class="form-control" formControlName="balance" type="number" />
       </div>
       <button class="btn btn-primary" type="submit">Enrôler</button>
     </form>

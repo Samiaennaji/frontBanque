@@ -1,20 +1,20 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6 mb-4">
-      <c-card class="text-white bg-primary">
-        <c-card-body>
+      <c-card>
+        <div class="card-body">
           <h5>Total Clients</h5>
           <h2>{{ totalClients }}</h2>
-        </c-card-body>
+        </div>
       </c-card>
     </div>
 
     <div class="col-md-6 mb-4">
-      <c-card class="text-white bg-success">
-        <c-card-body>
+      <c-card>
+        <div class="card-body">
           <h5>Total Comptes</h5>
           <h2>{{ totalAccounts }}</h2>
-        </c-card-body>
+        </div>
       </c-card>
     </div>
   </div>
@@ -22,12 +22,11 @@
   <div class="row">
     <div class="col-12">
       <c-card>
-        <c-card-header>Comptes créés par mois</c-card-header>
-        <c-card-body>
+        <div class="card-header">Comptes créés par mois</div>
+        <div class="card-body" style="height: 400px;">
           <c-chart type="bar" [data]="chartData" [options]="chartOptions"></c-chart>
-        </c-card-body>
+        </div>
       </c-card>
     </div>
   </div>
 </div>
-<h2>Dashboard chargé ✅</h2>

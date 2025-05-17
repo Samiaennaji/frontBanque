@@ -2,10 +2,10 @@
   <c-card-body>
     <form [formGroup]="deleteForm" (ngSubmit)="submit()">
       <div class="mb-3">
-        <label>ID du client à supprimer</label>
-        <input class="form-control" formControlName="clientId" />
+        <label>ID du client à supprimer *</label>
+        <input class="form-control" type="number" formControlName="clientId" />
       </div>
-      <button class="btn btn-danger" type="submit">Supprimer</button>
+      <button class="btn btn-danger" type="submit">Supprimer le client</button>
     </form>
   </c-card-body>
 </c-card>

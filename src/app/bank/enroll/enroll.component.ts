@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { EnrollmentService } from '../../services/enrollment.service';
-import { CardModule, ButtonModule, FormModule } from '@coreui/angular';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { CardModule, ButtonModule, FormModule } from '@coreui/angular';
+import { EnrollmentService } from '../../services/enrollment.service';
 
 @Component({
   selector: 'app-enroll',
   standalone: true,
   imports: [
     CommonModule,
-    HttpClientModule, // ✅ necessary for HttpClient injection
     ReactiveFormsModule,
     FormsModule,
     CardModule,
     ButtonModule,
-    FormModule,
+    FormModule
   ],
   templateUrl: './enroll.component.html'
 })
@@ -24,19 +22,30 @@ export class EnrollComponent {
 
   constructor(private fb: FormBuilder, private enrollmentService: EnrollmentService) {
     this.enrollForm = this.fb.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      tel: ['', Validators.required],
+      birthDate: ['', Validators.required],
       accountType: ['courant', Validators.required],
+      balance: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
-  submit() {
+  submit(): void {
     if (this.enrollForm.valid) {
       this.enrollmentService.enroll(this.enrollForm.value).subscribe({
-        next: res => console.log('Success:', res),
-        error: err => console.error('Error:', err)
+        next: () => {
+          alert('✅ Client enrôlé avec succès');
+          this.enrollForm.reset();
+        },
+        error: err => {
+          console.error(err);
+          alert('❌ Erreur lors de l\'enrôlement : ' + err.error?.message || err.message);
+        }
       });
+    } else {
+      alert('❗ Formulaire invalide. Veuillez vérifier tous les champs.');
     }
   }
 }

@@ -1,12 +1,12 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RouterModule, CommonModule],
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'FrontEspaceBanque';
-}
+export class AppComponent {}

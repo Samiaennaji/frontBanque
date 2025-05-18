@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; // ✅ Only this
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
-  private baseUrl = 'http://localhost:8090/api/dashboard';
-
+ private baseUrl = 'http://localhost:8098/employee_dashboard_back_war/api/employee';
   constructor(private http: HttpClient) {}
 
   getTotalClients(): Observable<number> {

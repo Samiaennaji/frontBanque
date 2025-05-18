@@ -25,7 +25,7 @@ export class DeleteComponent {
     private enrollmentService: EnrollmentService
   ) {
     this.deleteForm = this.fb.group({
-      clientId: ['', [Validators.required, Validators.min(1)]],
+      clientId: [null, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -35,12 +35,18 @@ export class DeleteComponent {
 
       if (confirm(`Êtes-vous sûr de vouloir supprimer le client ID ${clientId} ?`)) {
         this.enrollmentService.deleteClient(clientId).subscribe({
-          next: () => alert('Client supprimé avec succès'),
-          error: err => alert('Erreur lors de la suppression : ' + err.message),
+          next: () => {
+            alert('✅ Client supprimé avec succès');
+            this.deleteForm.reset();
+          },
+          error: err => {
+            console.error(err);
+            alert('❌ Erreur lors de la suppression : ' + err.error?.message || err.message);
+          },
         });
       }
     } else {
-      alert('Veuillez entrer un ID client valide.');
+      alert('❗ Veuillez entrer un ID client valide.');
     }
   }
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EnrollmentService {
-  private baseUrl = 'http://localhost:8090/api/employee';
+ private baseUrl = 'http://localhost:8098/employee_dashboard_back_war/api/employee';
 
   constructor(private http: HttpClient) {}
 
@@ -18,10 +18,11 @@ export class EnrollmentService {
     return this.http.put(`${this.baseUrl}/update`, data);
   }
 
-  deleteClient(clientId: number): Observable<object> {
+  deleteClient(clientId: number): Observable<any> {
   return this.http.request('delete', `${this.baseUrl}/delete`, {
     body: { clientId }
   });
+
 }
 
 }

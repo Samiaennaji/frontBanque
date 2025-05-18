@@ -10,23 +10,23 @@
       </div>
 
       <div class="mb-3">
-        <label for="firstName" class="form-label">Nouveau prénom</label>
-        <input id="firstName" type="text" class="form-control" formControlName="firstName">
+        <label for="newFirstName" class="form-label">Nouveau prénom</label>
+        <input id="newFirstName" type="text" class="form-control" formControlName="newFirstName">
       </div>
 
       <div class="mb-3">
-        <label for="lastName" class="form-label">Nouveau nom</label>
-        <input id="lastName" type="text" class="form-control" formControlName="lastName">
+        <label for="newLastName" class="form-label">Nouveau nom</label>
+        <input id="newLastName" type="text" class="form-control" formControlName="newLastName">
       </div>
 
       <div class="mb-3">
-        <label for="email" class="form-label">Nouvel email</label>
-        <input id="email" type="email" class="form-control" formControlName="email">
+        <label for="newEmail" class="form-label">Nouvel email</label>
+        <input id="newEmail" type="email" class="form-control" formControlName="newEmail">
       </div>
 
       <div class="mb-3">
-        <label for="tel" class="form-label">Nouveau téléphone</label>
-        <input id="tel" type="text" class="form-control" formControlName="tel">
+        <label for="newTel" class="form-label">Nouveau téléphone</label>
+        <input id="newTel" type="text" class="form-control" formControlName="newTel">
       </div>
 
       <div class="mb-3">
@@ -34,7 +34,9 @@
         <input id="supervisorPassword" type="password" class="form-control" formControlName="supervisorPassword" required>
       </div>
 
-      <button class="btn btn-primary" type="submit" [disabled]="!modifyForm.valid">Mettre à jour</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!modifyForm.valid">
+        Mettre à jour
+      </button>
     </form>
   </c-card-body>
 </c-card>

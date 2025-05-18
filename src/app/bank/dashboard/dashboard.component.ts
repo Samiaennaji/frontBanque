@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from '@coreui/angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
-import { DashboardService } from '../../services/dashborad.service';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, CardModule, ChartjsModule],
+  standalone: true, // ✅ clé ici
+  imports: [CommonModule, CardModule, ChartjsModule], // ✅ modules nécessaires
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {

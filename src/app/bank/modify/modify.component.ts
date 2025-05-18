@@ -13,7 +13,7 @@ import { EnrollmentService } from '../../services/enrollment.service';
     FormsModule,
     CardModule,
     ButtonModule,
-    FormModule,
+    FormModule
   ],
   templateUrl: './modify.component.html'
 })

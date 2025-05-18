@@ -5,7 +5,6 @@ import { EnrollComponent } from './bank/enroll/enroll.component';
 import { ModifyComponent } from './bank/modify/modify.component';
 import { DeleteComponent } from './bank/delete/delete.component';
 
-
 export const routes: Routes = [
   {
     path: '',

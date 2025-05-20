@@ -23,6 +23,7 @@
     "@coreui/angular": "^5.4.12",
     "@coreui/angular-chartjs": "^5.4.12",
     "@coreui/icons": "^3.0.1",
+    "@webcomponents/custom-elements": "^1.6.0",
     "chart.js": "^4.4.9",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",

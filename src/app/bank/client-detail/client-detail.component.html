@@ -1,0 +1,57 @@
+<c-card class="mt-4">
+  <c-card-header>
+    <strong>Détails du client</strong>
+  </c-card-header>
+
+  <c-card-body *ngIf="!loading && client">
+    <h5>👤 {{ client.fullName }}</h5>
+    <p><strong>ID Client:</strong> {{ client.clientId }}</p>
+
+    <h6 class="mt-4">💼 Comptes associés:</h6>
+    <c-table bordered hover responsive>
+      <thead>
+        <tr>
+          <th>Numéro de compte</th>
+          <th>Type</th>
+          <th>Solde</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of client.accounts">
+          <td>{{ account.accountNumber }}</td>
+          <td>{{ account.type }}</td>
+          <td>{{ account.balance | currency:'EUR' }}</td>
+        </tr>
+        <tr *ngFor="let account of client.accounts">
+          <td colspan="3">
+            <strong>Transactions:</strong>
+            <c-table small class="mt-2" striped>
+              <thead>
+                <tr>
+                  <th>ID Transaction</th>
+                  <th>Montant</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tx of account.transactions">
+                  <td>{{ tx.transactionId }}</td>
+                  <td>{{ tx.amount | currency:'EUR' }}</td>
+                  <td>{{ tx.date | date:'short' }}</td>
+                </tr>
+              </tbody>
+            </c-table>
+          </td>
+        </tr>
+      </tbody>
+    </c-table>
+  </c-card-body>
+
+  <c-card-body *ngIf="loading">
+    <c-spinner size="sm" color="primary"></c-spinner> Chargement...
+  </c-card-body>
+
+  <c-card-body *ngIf="!loading && !client">
+    <p class="text-danger">Client non trouvé.</p>
+  </c-card-body>
+</c-card>

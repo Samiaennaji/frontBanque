@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center gap-2">
+  <button
+    class="btn"
+    [class.btn-danger]="!isBlocked"
+    [class.btn-success]="isBlocked"
+    (click)="toggleStatus()"
+    [disabled]="loading"
+  >
+    {{ isBlocked ? 'Débloquer' : 'Bloquer' }}
+  </button>
+
+  <c-spinner *ngIf="loading" size="sm"></c-spinner>
+</div>

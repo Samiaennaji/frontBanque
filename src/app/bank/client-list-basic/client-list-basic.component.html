@@ -1,0 +1,19 @@
+<c-card class="mt-4">
+  <c-card-header>
+    <strong>📋 Liste des clients</strong>
+  </c-card-header>
+
+  <c-card-body>
+    <div *ngIf="loading" class="text-muted">
+      <c-spinner color="primary" size="sm"></c-spinner> Chargement des clients...
+    </div>
+
+    <c-list-group *ngIf="!loading">
+      <c-list-group-item *ngFor="let client of clients">
+        <a [routerLink]="['/clients', client.clientId]" class="text-decoration-none">
+          {{ client.fullName }}
+        </a>
+      </c-list-group-item>
+    </c-list-group>
+  </c-card-body>
+</c-card>

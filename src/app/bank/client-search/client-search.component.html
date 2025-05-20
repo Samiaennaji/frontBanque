@@ -1,0 +1,26 @@
+<div class="mb-3">
+  <input
+    [(ngModel)]="searchTerm"
+    (keyup.enter)="search()"
+    class="form-control"
+    placeholder="Rechercher un client par nom..."
+  />
+  <button class="btn btn-primary mt-2" (click)="search()" [disabled]="loading">
+    Rechercher
+  </button>
+</div>
+
+<div *ngIf="loading" class="text-muted">
+  <c-spinner size="sm" color="primary"></c-spinner> Recherche en cours...
+</div>
+
+<ul class="list-group mt-3" *ngIf="results.length > 0">
+  <li
+    *ngFor="let client of results"
+    class="list-group-item list-group-item-action"
+    (click)="selectClient(client)"
+    style="cursor: pointer;"
+  >
+    {{ client.fullName }}
+  </li>
+</ul>

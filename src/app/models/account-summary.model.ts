@@ -1,8 +1,8 @@
-import { Transaction } from './transaction.model';
+import { TransactionDTO } from './transaction.model';
 
-export interface AccountSummary {
+export interface AccountSummaryDTO {
   accountNumber: string;
   type: string;
   balance: number;
-  transactions: Transaction[];
+  transactions: TransactionDTO[];
 }

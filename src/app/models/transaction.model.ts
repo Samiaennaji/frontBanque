@@ -1,5 +1,5 @@
-export interface Transaction {
+export interface TransactionDTO {
   transactionId: string;
   amount: number;
-  date: string; // Format ISO-8601, ex: "2024-05-16T13:45:30"
+  date: string; // or `Date` if you're parsing it
 }

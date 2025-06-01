@@ -1,0 +1,82 @@
+.client-list {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.search-bar,
+.sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.search-bar input {
+  flex: 1 1 250px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-bar button,
+.sort-controls select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+.sort-controls select {
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #bbb;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #43a047;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}

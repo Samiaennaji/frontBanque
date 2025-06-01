@@ -1,4 +1,4 @@
 export interface ActivateServicesRequest {
-  clientId: number;
-  serviceNames: string[];
+  clientId: string; // MUST be string to match backend
+  services: string[];
 }

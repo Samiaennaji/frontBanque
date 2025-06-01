@@ -1,48 +1,28 @@
 import { Routes } from '@angular/router';
-import { BankLayoutComponent } from './layout/bank-layout/bank-layout.component';
-import { DashboardComponent } from './bank/dashboard/dashboard.component';
-import { EnrollComponent } from './bank/enroll/enroll.component';
-import { ModifyComponent } from './bank/modify/modify.component';
-import { DeleteComponent } from './bank/delete/delete.component';
+
+import { LayoutComponent } from './components/layout/layout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClientListComponent } from './components/client-list/client-list.component';
+import { ClientDetailsComponent } from './components/client-details/client-details.component';
+import { ClientCreateComponent } from './components/client-create/client-create.component';
+import { ClientUpdateComponent } from './components/client-update/client-update.component';
+import { ClientDeleteComponent } from './components/client-delete/client-delete.component';
+import { ClientStatusToggleComponent } from './components/client-status-toggle/client-status-toggle.component';
+
 
 export const routes: Routes = [
   {
     path: '',
-    component: BankLayoutComponent,
+    component: LayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'enroll', component: EnrollComponent },
-      { path: 'modify', component: ModifyComponent },
-      { path: 'delete', component: DeleteComponent },
-
-      // ✅ Composants standalone ajoutés ici
-      {
-        path: 'client-admin-dashboard',
-        loadComponent: () =>
-          import('./bank/client-admin-dashboard/client-admin-dashboard.component')
-            .then(m => m.ClientAdminDashboardComponent)
-      },
-      {
-        path: 'clients/:id',
-        loadComponent: () =>
-          import('./bank/client-detail/client-detail.component')
-            .then(m => m.ClientDetailComponent)
-      },
-      {
-        path: 'client-list-detailed',
-        loadComponent: () =>
-          import('./bank/client-list-detailed/client-list-detailed.component')
-            .then(m => m.ClientListDetailedComponent)
-      },
-      {
-        path: 'client-search',
-        loadComponent: () =>
-          import('./bank/client-search/client-search.component')
-            .then(m => m.ClientSearchComponent)
-      },
-
-      // ✅ Redirection par défaut
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: '', component: DashboardComponent },
+      { path: 'clients', component: ClientListComponent },
+      { path: 'clients/create', component: ClientCreateComponent },
+      { path: 'clients/:id', component: ClientDetailsComponent },
+      { path: 'clients/:id/edit', component: ClientUpdateComponent },
+      { path: 'clients/:id/delete', component: ClientDeleteComponent },
+      { path: 'clients/:id/status', component: ClientStatusToggleComponent }
+      
     ]
   }
 ];

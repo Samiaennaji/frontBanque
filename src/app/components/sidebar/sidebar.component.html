@@ -1,0 +1,19 @@
+<aside class="sidebar">
+  <nav>
+    <ul>
+      <li><a routerLink="/">🏠 Tableau de Bord</a></li>
+      <li><a routerLink="/clients">👥 Liste des Clients</a></li>
+      <li *ngIf="!isCreatingClient"><a routerLink="/clients/create">➕ Créer un Client</a></li>
+    </ul>
+
+    <hr />
+
+    <!-- Lien dynamiques affichés uniquement si on a un clientId et pas en création -->
+    <ul *ngIf="clientId && !isCreatingClient">
+      <li><a [routerLink]="['/clients', clientId]">📄 Voir les Détails</a></li>
+      <li><a [routerLink]="['/clients', clientId, 'edit']">✏️ Modifier</a></li>
+      <li><a [routerLink]="['/clients', clientId, 'delete']">🗑️ Supprimer</a></li>
+      <li><a [routerLink]="['/clients', clientId, 'status']">🔁 Statut</a></li>
+    </ul>
+  </nav>
+</aside>

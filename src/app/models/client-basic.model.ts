@@ -1,5 +1,4 @@
-export interface ClientBasic {
+export interface ClientBasicDTO {
   clientId: number;
   fullName: string;
-  blocked: boolean;
 }

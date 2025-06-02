@@ -5,10 +5,20 @@
   <div *ngIf="error" class="alert error">{{ error }}</div>
 
   <p>
-  Êtes-vous sûr de vouloir supprimer le client
+    Êtes-vous sûr de vouloir supprimer le client
     <strong>{{ clientName }}</strong> (ID: {{ clientId }}) ?
   </p>
 
+  <div class="form-group">
+    <label for="supervisorCode">Code superviseur</label>
+    <input
+      type="password"
+      id="supervisorCode"
+      [(ngModel)]="supervisorCode"
+      class="input"
+      placeholder="Entrez le code superviseur"
+    />
+  </div>
 
   <div class="button-group">
     <button class="btn delete" (click)="confirmDelete()">✅ Oui, Supprimer</button>

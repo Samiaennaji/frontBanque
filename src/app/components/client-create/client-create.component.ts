@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-client-create',
@@ -14,6 +16,7 @@ import { ClientService } from '../../services/client.service';
 export class ClientCreateComponent {
   firstName: string = '';
   lastName: string = '';
+  cin: string = ''; 
   email: string = '';
   tel: string = '';
   birthDate: string = '';
@@ -23,7 +26,19 @@ export class ClientCreateComponent {
   message: string = '';
   error: string = '';
 
-  constructor(private clientService: ClientService, private router: Router) {}
+  constructor(private clientService: ClientService,
+     private router: Router,
+    private toastr: ToastrService
+  ) {}
+  
+formatDate(dateString: string): string {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? '' : date.toISOString().split('T')[0];
+}
+
+
+
 
   create(): void {
     this.error = '';
@@ -32,18 +47,22 @@ export class ClientCreateComponent {
       lastName: this.lastName,
       email: this.email,
       tel: this.tel,
-      birthDate: this.birthDate,
+      birthDate: this.formatDate(this.birthDate), // ✅ formaté
       accountType: this.accountType,
-      balance: this.balance
+      balance: this.balance,
+      cin: this.cin
     };
+
 
     this.clientService.createClient(payload).subscribe({
       next: () => {
         this.message = 'Client créé avec succès.';
+        this.toastr.success('Client créé avec succès.', 'Audit log');
         this.router.navigate(['/clients']);
       },
       error: () => {
         this.error = 'Erreur lors de la création du client.';
+        this.toastr.error('Erreur lors de la création.', 'Audit échoué');
       }
     });
   }

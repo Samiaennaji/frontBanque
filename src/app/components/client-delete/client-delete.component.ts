@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { FormModule } from '@coreui/angular';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-client-delete',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ToastrModule,FormsModule],
   templateUrl: './client-delete.component.html',
   styleUrls:['./client-delete.component.css']
 })
@@ -15,14 +19,14 @@ export class ClientDeleteComponent implements OnInit {
   message = '';
   error = '';
   clientName = '';
-  
-
+  supervisorCode = '';
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -44,20 +48,28 @@ export class ClientDeleteComponent implements OnInit {
 
 
  confirmDelete(): void {
-  this.clientService.deleteClient({ clientId: this.clientId }).subscribe({
+  const payload = {
+    clientId: this.clientId,
+    supervisorCode: this.supervisorCode
+  };
+
+  this.clientService.deleteClient(payload).subscribe({
     next: () => {
-      this.message = 'Client supprimé avec succès';
+      this.toastr.success('Client supprimé avec succès.', 'Action auditée');
       this.router.navigate(['/clients']);
     },
-    error: err => {
-      if (err?.status === 409) {
-        this.error = 'Suppression refusée : client avec transactions actives';
+    error: (err) => {
+      if (err.status === 401) {
+        this.toastr.error('Code superviseur incorrect.', 'Échec audit');
+      } else if (err.status === 400) {
+        this.toastr.warning(err.error, 'Suppression refusée');
       } else {
-        this.error = 'Erreur lors de la suppression.';
+        this.toastr.error('Erreur inattendue.', 'Audit échoué');
       }
     }
   });
 }
+
 
 
 

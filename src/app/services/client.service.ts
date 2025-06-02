@@ -42,9 +42,12 @@ export class ClientService {
     return this.http.put(`${this.baseUrl}/update`, data);
   }
 
-  deleteClient(data: any): Observable<any> {
-    return this.http.request('delete', `${this.baseUrl}/delete`, { body: data });
-  }
+  deleteClient(payload: { clientId: string; supervisorCode: string }): Observable<any> {
+  return this.http.request('delete', `${this.baseUrl}/delete`, {
+    body: payload
+  });
+}
+
 
   toggleClientStatus(clientId: string, compteBloque: boolean, documentsComplets: boolean): Observable<any> {
   return this.http.put(

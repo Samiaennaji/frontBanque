@@ -1,82 +1,96 @@
-.client-list {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
+.client-list-container {
+  background-color: #f8fafc;
+  padding: 30px;
+  
+  border-radius: 12px;
 }
 
-.search-bar,
-.sort-controls {
+h2 {
+  color: #1e3a8a;
+  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 30px;
+  
+}
+
+.top-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 15px;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .search-bar input {
-  flex: 1 1 250px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  min-width: 250px;
 }
 
-.search-bar button,
-.sort-controls select {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #1976d2;
+.search-bar button {
+  background-color: #2563eb;
   color: white;
+  padding: 8px 14px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-.sort-controls select {
-  background-color: #eee;
-  color: #333;
-  border: 1px solid #bbb;
+.sort-bar select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  margin-left: 10px;
 }
 
-.table-container {
+.client-table-wrapper {
   overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-thead {
-  background-color: #f1f1f1;
-}
-
-th,
-td {
-  padding: 12px;
+th, td {
+  padding: 16px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
-tr:hover {
-  background-color: #f9f9f9;
+th {
+  background-color: #e5e7eb;
+  color: #1e3a8a;
+  font-weight: 600;
 }
 
-button {
-  padding: 6px 12px;
-  background-color: #43a047;
+tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+.btn-details {
+  background-color: #3b82f6;
   color: white;
+  padding: 6px 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #388e3c;
+.btn-details:hover {
+  background-color: #2563eb;
 }
 
-.error {
-  color: red;
-  text-align: center;
-  margin-bottom: 10px;
+.error-msg {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
 }

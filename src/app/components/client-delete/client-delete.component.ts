@@ -15,6 +15,8 @@ export class ClientDeleteComponent implements OnInit {
   message = '';
   error = '';
   clientName = '';
+  
+
 
 
   constructor(
@@ -58,7 +60,9 @@ export class ClientDeleteComponent implements OnInit {
 }
 
 
-  cancel(): void {
-  // Ne fait rien, reste sur la page actuelle
+
+ cancel(): void {
+  this.router.navigate(['/clients', this.clientId]);
 }
+
 }

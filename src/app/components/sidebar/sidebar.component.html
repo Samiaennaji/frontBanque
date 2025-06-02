@@ -1,19 +1,46 @@
 <aside class="sidebar">
   <nav>
     <ul>
-      <li><a routerLink="/">🏠 Tableau de Bord</a></li>
-      <li><a routerLink="/clients">👥 Liste des Clients</a></li>
-      <li *ngIf="!isCreatingClient"><a routerLink="/clients/create">➕ Créer un Client</a></li>
+      <li>
+        <a routerLink="/" routerLinkActive="active">
+          <i class="fas fa-home"></i> Tableau de Bord
+        </a>
+      </li>
+      <li>
+        <a routerLink="/clients" routerLinkActive="active">
+          <i class="fas fa-users"></i> Liste des Clients
+        </a>
+      </li>
+      <li>
+        <a routerLink="/clients/create" routerLinkActive="active">
+          <i class="fas fa-user-plus"></i> Créer un Client
+        </a>
+      </li>
     </ul>
 
     <hr />
 
-    <!-- Lien dynamiques affichés uniquement si on a un clientId et pas en création -->
     <ul *ngIf="clientId && !isCreatingClient">
-      <li><a [routerLink]="['/clients', clientId]">📄 Voir les Détails</a></li>
-      <li><a [routerLink]="['/clients', clientId, 'edit']">✏️ Modifier</a></li>
-      <li><a [routerLink]="['/clients', clientId, 'delete']">🗑️ Supprimer</a></li>
-      <li><a [routerLink]="['/clients', clientId, 'status']">🔁 Statut</a></li>
+      <li>
+        <a [routerLink]="['/clients', clientId]" routerLinkActive="active">
+          <i class="fas fa-file-alt"></i> Voir les Détails
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/clients', clientId, 'edit']" routerLinkActive="active">
+          <i class="fas fa-pen"></i> Modifier
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/clients', clientId, 'status']" routerLinkActive="active">
+          <i class="fas fa-toggle-on"></i> Statut
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/clients', clientId, 'delete']" routerLinkActive="active">
+          <i class="fas fa-trash"></i> Supprimer
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

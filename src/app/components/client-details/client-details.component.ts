@@ -70,28 +70,41 @@ export class ClientDetailsComponent implements OnInit {
   }
 
   activate(): void {
-    this.clearMessages();
-    if (!this.isEligible) {
-      this.error = "Le client est bloqué ou n’a pas tous les documents complets.";
-      return;
-    }
-    if (this.newServices.length === 0) {
-      this.error = "Veuillez sélectionner des services à activer.";
-      return;
-    }
+  this.clearMessages();
 
-    const request = {
-      clientId: this.clientId,
-      services: this.newServices
-    };
+  // 🔁 Recharger les données du client AVANT de valider l’éligibilité
+  this.clientService.getClientById(this.clientId).subscribe({
+    next: (client) => {
+      this.client = client;
 
-    this.isLoading = true;
-    this.serviceManager.activateServices(request).subscribe({
-      next: () => this.message = "Services activés avec succès.",
-      error: () => this.error = "Erreur lors de l'activation.",
-      complete: () => this.isLoading = false
-    });
-  }
+      if (!this.isEligible) {
+        this.error = "Le client est bloqué ou n’a pas tous les documents complets.";
+        return;
+      }
+
+      if (this.newServices.length === 0) {
+        this.error = "Veuillez sélectionner des services à activer.";
+        return;
+      }
+
+      const request = {
+        clientId: this.clientId,
+        services: this.newServices
+      };
+
+      this.isLoading = true;
+      this.serviceManager.activateServices(request).subscribe({
+        next: () => this.message = "Services activés avec succès.",
+        error: () => this.error = "Erreur lors de l'activation.",
+        complete: () => this.isLoading = false
+      });
+    },
+    error: () => {
+      this.error = "Impossible de vérifier les statuts du client.";
+    }
+  });
+}
+
 
   suspend(): void {
     this.clearMessages();

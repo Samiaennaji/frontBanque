@@ -1,32 +1,40 @@
-/* ===== Conteneur Global ===== */
 .client-details-container {
   background-color: #f8fafc;
   padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;        /* ✅ Centre horizontalement */
+  justify-content: center;    /* ✅ Centre verticalement si hauteur fixée */
   min-height: 100vh;
+  text-align: center;         /* ✅ Centre les textes dans certains cas */
 }
-
-/* ===== Informations Client ===== */
 .client-info {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(to right, #ffffff, #f9fafb);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   margin-bottom: 30px;
   font-family: 'Segoe UI', sans-serif;
   color: #1e3a8a;
-  max-width: 900px;
+  max-width: 500px;
+  width: 100%;
+  transition: transform 0.2s ease;
+  
+}
+
+.client-info:hover {
+  transform: translateY(-4px);
 }
 
 .client-info p {
   font-size: 16px;
-  margin: 12px 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  color: #0f172a;
 }
+
 
 /* ===== Titres ===== */
 h2, h3, h4 {
@@ -37,44 +45,41 @@ h2, h3, h4 {
 }
 
 /* ===== Tableau des Comptes ===== */
-.account-list {
-  margin-top: 30px;
-}
-
-.account-list h3 {
-  font-size: 20px;
-  color: #1e3a8a;
-  margin-bottom: 12px;
-}
-
 .account-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
-
-.account-table thead {
-  background-color: #eff6ff;
+ 
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  background-color: transparent;
+  margin: 0 auto; /* ✅ Centre le tableau horizontalement */
+  width: auto;    /* ✅ Laisse le contenu définir la largeur si tu veux */
 }
 
 .account-table th, .account-table td {
-  padding: 16px;
+  padding: 14px 20px;
   text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 16px;
+  font-size: 15px;
 }
 
-.account-table th {
+.account-table thead th {
+  background-color: #e0edff;
   color: #1e3a8a;
   font-weight: 600;
+  border-radius: 8px;
 }
 
-.account-table td {
+.account-table tbody td {
+  background-color: #ffffff;
   color: #374151;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
 }
+
+.account-table tbody tr:hover td {
+  transform: translateY(-2px);
+  background-color: #f0f8ff;
+}
+
 
 /* ===== Onglets ===== */
 .tabs {

@@ -43,6 +43,8 @@ export class ClientStatusToggleComponent implements OnInit {
     this.message = '';
     this.error = '';
 
+
+    console.log(">>> Mise à jour du statut :", this.compteBloque, this.documentsComplets);
     this.clientService.toggleClientStatus(this.clientId, this.compteBloque, this.documentsComplets).subscribe({
       next: () => this.message = "Statuts mis à jour avec succès",
       error: () => this.error = "Erreur lors de la mise à jour du statut"

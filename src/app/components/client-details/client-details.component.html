@@ -17,12 +17,13 @@
       <tbody>
         <tr *ngFor="let acc of client.accounts">
           <td>{{ acc.accountNumber }}</td>
-          <td>{{ acc.balance | currency: 'EUR' }}</td>
+          <td>{{ acc.balance | currency: 'MAD' }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 
 
   <div *ngIf="message" class="alert success">{{ message }}</div>
